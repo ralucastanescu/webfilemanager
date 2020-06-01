@@ -83,11 +83,10 @@ class Files extends CI_Controller {
                 $data = array('upload_file' => $this->upload->data());
                 $file['file'] = $data['upload_file']['file_name'];
                 $file['original_name'] = $_FILES['userfile']['name'];
-
                 $this->session->set_flashdata('created_file', 'The file has been successfully created with name: ' . $file['file']);
+                $this->filesmodel->create_file($file);
             }
 
-            $this->filesmodel->create_file($file);
             redirect('files');
         }
 
