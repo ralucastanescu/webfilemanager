@@ -7,13 +7,13 @@
     Currently, some test files have been uploaded, by a few users:
     <ul>
         <li>
-            username: raluca, password: 123
+            username: raluca, password: 123456
         </li>
         <li>
-            username: matei, password: 123
+            username: matei, password: 123456
         </li>
         <li>
-            username: anca, password: 123
+            username: anca, password: 123456
         </li>
     </ul>
     A registration form is available, for further addition of users. <br/>
