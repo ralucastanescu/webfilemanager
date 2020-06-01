@@ -83,5 +83,5 @@ class FilesModel extends CI_Model {
         return $this->db->update('files', $data);
 
     }
-    
+
 }
