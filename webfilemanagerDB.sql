@@ -1,3 +1,11 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Jun 01, 2020 at 04:33 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,7 +34,6 @@ CREATE TABLE `files` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `tag` varchar(255) NOT NULL,
-  `path` varchar(255) NOT NULL,
   `attachment` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -36,37 +43,14 @@ CREATE TABLE `files` (
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`id`, `user_id`, `title`, `description`, `tag`, `path`, `attachment`, `created_at`, `updated_at`) VALUES
-(1, 2, 'A test TXT file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'test', '/assets/uploadedFiles/Test.txt', 'Test.txt', '2020-06-01 11:24:40', NULL),
-(2, 2, 'A test PDF file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'pdf,text', '/assets/uploadedFiles/Test PDF.pdf', 'Test PDF.pdf', '2020-06-01 11:25:28', NULL),
-(4, 2, 'Test ZIP file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'zip', '/assets/uploadedFiles/Test ZIP.zip', 'Test ZIP.zip', '2020-06-01 11:26:31', NULL),
-(5, 1, 'Test JPG file', 'This is just a test JPG, which has also been updated, more than once. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la', 'jpg', '/assets/uploadedFiles/company.jpg', 'company.jpg', '2020-06-01 11:27:52', '2020-06-01 10:31:27'),
-(7, 1, 'Test DOCX file', 'Just a sample docx document', 'docx', '/assets/uploadedFiles/file-sample_100kB.doc', 'file-sample_100kB.doc', '2020-06-01 11:34:07', NULL),
-(8, 3, 'Test PNG file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'png', '/assets/uploadedFiles/sample.png', 'sample.png', '2020-06-01 11:39:40', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `register_date`) VALUES
-(1, 'Raluca', 'rlcstanescu@yahoo.com', 'raluca', '202cb962ac59075b964b07152d234b70', '2020-05-31 20:45:19'),
-(2, 'Anca', 'anca@yahoo.com', 'anca', '202cb962ac59075b964b07152d234b70', '2020-05-31 20:48:32'),
-(3, 'Matei', 'matei@gmail.com', 'matei', '202cb962ac59075b964b07152d234b70', '2020-06-01 11:34:35');
+INSERT INTO `files` (`id`, `user_id`, `title`, `description`, `tag`, `attachment`, `created_at`, `updated_at`) VALUES
+(1, 2, 'A test TXT file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'test', 'Test.txt', '2020-06-01 11:24:40', NULL),
+(2, 2, 'A test PDF file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'pdf,text', 'Test PDF.pdf', '2020-06-01 11:25:28', NULL),
+(4, 2, 'Test ZIP file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'zip, test', 'Test ZIP.zip', '2020-06-01 11:26:31', '2020-06-01 13:32:01'),
+(5, 1, 'Test JPG file', 'This is just a test JPG, which has also been updated, more than once. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la', 'jpg', 'company.jpg', '2020-06-01 11:27:52', '2020-06-01 10:31:27'),
+(7, 1, 'Test DOCX file', 'Just a sample docx document', 'docx, sample', 'file-sample_100kB.doc', '2020-06-01 11:34:07', '2020-06-01 12:07:16'),
+(8, 3, 'Test PNG file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'png', 'sample.png', '2020-06-01 11:39:40', NULL),
+(27, 2, 'Test TXT file', 'Just a test txt file upload', 'txt', '5ed511a0708b4_Test.txt', '2020-06-01 14:33:04', NULL);
 
 --
 -- Indexes for dumped tables
@@ -80,12 +64,6 @@ ALTER TABLE `files`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -93,13 +71,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables

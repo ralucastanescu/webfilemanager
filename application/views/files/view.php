@@ -19,20 +19,22 @@ echo $file['created_at'];
                 echo $file['description'];
                 ?>
             </h6>
-            <hr>
-            <p>File tag:</p>
-            <h6>
-                <?php
-                echo $file['tag'];
-                ?>
-            </h6>
+            <?php if(!empty($file['tag'])) { ?>
+                <hr>
+                <p>File tag:</p>
+                <h6>
+                    <?php
+                    echo $file['tag'];
+                    ?>
+                </h6>
+            <?php } ?>
         </div>
         <?php
-        if(!empty($file['path']) && !empty($file['attachment'])) {
+        if(!empty($file['attachment'])) {
             ?>
             <div class="col-md-3">
                 <p><?php echo $file['attachment']; ?></p>
-                <a href="<?php echo site_url() . $file['path']; ?>" download class="btn btn-info">
+                <a href="<?php echo site_url() . 'assets/uploadedFiles/' . $file['attachment']; ?>" download class="btn btn-info">
                     Download file
                 </a>
                 <br/>

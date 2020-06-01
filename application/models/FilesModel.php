@@ -9,7 +9,7 @@ class FilesModel extends CI_Model {
     public function get_files($id = NULL) {
 
         $this->db->select('files.id, files.title, files.description, 
-            files.attachment, files.created_at, files.user_id, files.tag, files.path, users.username');
+            files.attachment, files.created_at, files.user_id, files.tag, users.username');
         $this->db->order_by('files.id', 'DESC');
         $this->db->join('users', 'users.id = files.user_id');
 
@@ -31,7 +31,7 @@ class FilesModel extends CI_Model {
     public function get_user_files($userId) {
 
         $this->db->select('files.id, files.title, files.description, 
-            files.attachment, files.created_at, files.user_id, files.tag, files.path, users.username');
+            files.attachment, files.created_at, files.user_id, files.tag, users.username');
         $this->db->order_by('files.id', 'DESC');
         $this->db->join('users', 'users.id = files.user_id');
 
@@ -47,8 +47,7 @@ class FilesModel extends CI_Model {
             'description' => $this->input->post('description'),
             'user_id' => $this->session->userdata('user_id'),
             'tag' => $this->input->post('tag'),
-            'attachment' => $file['file'],
-            'path' => $file['path']
+            'attachment' => $file['file']
         );
 
         return $this->db->insert('files', $data);
@@ -59,8 +58,8 @@ class FilesModel extends CI_Model {
         $attachment = $this->db->select('attachment')->get_where('files', array('id' => $id))->row()->attachment;
 
         $cwd = getcwd();
-        $image_file_path = $cwd."/assets/uploadedFiles/";
-        chdir($image_file_path);
+        $file_path = $cwd."/assets/uploadedFiles/";
+        chdir($file_path);
         unlink($attachment);
         chdir($cwd);
 
@@ -84,4 +83,5 @@ class FilesModel extends CI_Model {
         return $this->db->update('files', $data);
 
     }
+    
 }

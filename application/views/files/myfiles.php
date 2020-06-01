@@ -58,11 +58,11 @@ foreach ($files as $file) { ?>
             </h6>
         </div>
         <?php
-        if(!empty($file['path']) && !empty($file['attachment'])) {
+        if(!empty($file['attachment'])) {
             ?>
             <div class="col-md-3">
                 <p><?php echo $file['attachment']; ?></p>
-                <a href="<?php echo site_url() . $file['path']; ?>" download class="btn btn-info">
+                <a href="<?php echo site_url() . 'assets/uploadedFiles/' . $file['attachment']; ?>" download class="btn btn-info">
                     Download file
                 </a>
                 <br/>
