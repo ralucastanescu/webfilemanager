@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['files/newFile'] = 'files/newFile';
+$route['files/myfiles'] = 'files/myfiles';
 $route['files/update'] = 'files/update';
 $route['files/(:any)'] = 'files/view/$1';
 $route['files'] = 'files/index';

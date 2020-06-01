@@ -1,6 +1,7 @@
 <h2>
     <?php echo $title; ?>
 </h2>
+
 <?php echo validation_errors(); ?>
 <?php echo form_open('files/update/'); ?>
     <div class="form-group">
@@ -15,7 +16,8 @@
     </div>
 <div class="form-group">
     <label>File tag</label>
-    <input class="form-control" id="" name="tag" placeholder="File Tag"><?php echo $file['tag']; ?>
+    <input class="form-control" id="" name="tag" placeholder="File Tag" value="<?php echo $file['tag']; ?>">
 </div>
-    <button type="submit" class="btn btn-primary">Update file</button>
+
+<button type="submit" class="btn btn-primary">Update file</button>
 <?php echo form_close(); ?>

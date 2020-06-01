@@ -1,10 +1,13 @@
 jQuery(document).ready(function () {
-    console.log('aici');
-    var url = window.location.pathname,
-        urlRegExp = new RegExp(url.replace(/\/$/,'') + "$");
-    jQuery('.navbar-nav li a').each(function(){
-        if(urlRegExp.test(this.href.replace(/\/$/,''))){
-            jQuery(this).addClass('active');
+
+    var url = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+    jQuery('.navbar-nav li').each(function(){
+        if(jQuery(this).attr('id') === 'home' && url.length === 0) {
+            //jQuery('.navbar-nav ' + '#home').addClass('active');
+            //jQuery(this).addClass('active');
+        } else {
+            jQuery('.navbar-nav').find('li').removeClass('active');
+            jQuery('.navbar-nav ' + '#' + url).addClass('active');
         }
     });
 });

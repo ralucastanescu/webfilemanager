@@ -28,6 +28,18 @@ class FilesModel extends CI_Model {
 
     }
 
+    public function get_user_files($userId) {
+
+        $this->db->select('files.id, files.title, files.description, 
+            files.attachment, files.created_at, files.user_id, files.tag, files.path, users.username');
+        $this->db->order_by('files.id', 'DESC');
+        $this->db->join('users', 'users.id = files.user_id');
+
+        $query = $this->db->get_where('files', array('files.user_id' => $userId));
+        return $query->result_array();
+
+    }
+
     public function create_file($file) {
 
         $data = array(

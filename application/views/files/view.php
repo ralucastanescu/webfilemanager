@@ -19,6 +19,13 @@ echo $file['created_at'];
                 echo $file['description'];
                 ?>
             </h6>
+            <hr>
+            <p>File tag:</p>
+            <h6>
+                <?php
+                echo $file['tag'];
+                ?>
+            </h6>
         </div>
         <?php
         if(!empty($file['path']) && !empty($file['attachment'])) {

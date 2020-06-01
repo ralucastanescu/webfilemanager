@@ -14,7 +14,24 @@ class Files extends CI_Controller {
 
     }
 
+    public function myfiles() {
+
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+
+        $data['title'] = 'My files';
+
+        $data['files'] = $this->filesmodel->get_user_files($this->session->userdata('user_id'));
+
+        $this->load->view('templates/header');
+        $this->load->view('files/myfiles', $data);
+        $this->load->view('templates/footer');
+
+    }
+
     public function view($id = NULL) {
+
         $data['file'] = $this->filesmodel->get_files($id);
 
         if(empty($data['file'])) {
