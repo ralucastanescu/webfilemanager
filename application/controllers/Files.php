@@ -77,7 +77,8 @@ class Files extends CI_Controller {
             if(!$this->upload->do_upload()) {
                 $errors = array('error' => $this->upload->display_errors());
                 $file = '';
-                $this->session->set_flashdata('not_created_file', $errors);
+                $this->session->set_flashdata('not_created_file', $errors['error']);
+
             } else {
                 $data = array('upload_file' => $this->upload->data());
                 $file['file'] = $data['upload_file']['file_name'];
