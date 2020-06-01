@@ -33,8 +33,8 @@ echo $file['created_at'];
         if(!empty($file['attachment'])) {
             ?>
             <div class="col-md-3">
-                <p><?php echo $file['attachment']; ?></p>
-                <a href="<?php echo site_url() . 'assets/uploadedFiles/' . $file['attachment']; ?>" download class="btn btn-info">
+                <p><?php echo $file['original_name']; ?></p>
+                <a href="<?php echo site_url() . 'assets/uploadedFiles/' . $file['attachment']; ?>" download="<?php echo $file['original_name']; ?>" class="btn btn-info">
                     Download file
                 </a>
                 <br/>

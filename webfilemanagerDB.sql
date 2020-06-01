@@ -11,12 +11,6 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `webfilemanagerDB`
 --
@@ -34,6 +28,7 @@ CREATE TABLE `files` (
   `description` varchar(255) NOT NULL,
   `tag` varchar(255) NOT NULL,
   `attachment` varchar(255) NOT NULL,
+  `original_name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,15 +37,14 @@ CREATE TABLE `files` (
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`id`, `user_id`, `title`, `description`, `tag`, `attachment`, `created_at`, `updated_at`) VALUES
-(1, 2, 'A test TXT file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'test', 'Test.txt', '2020-06-01 11:24:40', NULL),
-(2, 2, 'A test PDF file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'pdf,text', 'Test PDF.pdf', '2020-06-01 11:25:28', NULL),
-(4, 2, 'Test ZIP file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'zip, test', 'Test ZIP.zip', '2020-06-01 11:26:31', '2020-06-01 13:32:01'),
-(5, 1, 'Test JPG file', 'This is just a test JPG, which has also been updated, more than once. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la', 'jpg', 'company.jpg', '2020-06-01 11:27:52', '2020-06-01 10:31:27'),
-(7, 1, 'Test DOCX file', 'Just a sample docx document', 'docx, sample', 'file-sample_100kB.doc', '2020-06-01 11:34:07', '2020-06-01 12:07:16'),
-(8, 3, 'Test PNG file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i', 'png', 'sample.png', '2020-06-01 11:39:40', NULL),
-(27, 2, 'Test TXT file', 'Just a test txt file upload', 'txt', '5ed511a0708b4_Test.txt', '2020-06-01 14:33:04', NULL),
-(28, 2, 'File with upload', 'jfjf', 'fjf', '5ed5129495108_New_(1).txt', '2020-06-01 14:37:08', NULL);
+INSERT INTO `files` (`id`, `user_id`, `title`, `description`, `tag`, `attachment`, `original_name`, `created_at`, `updated_at`) VALUES
+(29, 1, 'Test PDF file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ', 'pdf, text', '5ed523a83c43a_Test_PDF.pdf', 'Test PDF.pdf', '2020-06-01 15:50:00', NULL),
+(30, 1, 'Test TXT file', 'Just a simple txt, for testing purposes', 'txt', '5ed523ec79423_Test.txt', 'Test.txt', '2020-06-01 15:51:08', NULL),
+(31, 2, 'Test PNG file', 'This is a test PNG upload. ', 'png, image', '5ed52475d584d_sample_png.png', 'sample png.png', '2020-06-01 15:53:25', NULL),
+(32, 2, 'Test ZIP file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ', 'zip', '5ed524f567b30_Test_ZIP.zip', 'Test ZIP.zip', '2020-06-01 15:55:33', NULL),
+(33, 3, 'Test JPG file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ', 'jpg, image, img', '5ed52519f30ed_company.jpg', 'company.jpg', '2020-06-01 15:56:09', NULL),
+(34, 3, 'Test DOC file', 'Just a random description', 'doc', '5ed5255699e47_file-sample_100kB.doc', 'file-sample_100kB.doc', '2020-06-01 15:57:10', NULL),
+(35, 3, 'Test DOCX file', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit a', 'docx', '5ed5257932c7e_file-sample_100kB.docx', 'file-sample_100kB.docx', '2020-06-01 15:57:45', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,7 +95,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -119,7 +113,3 @@ ALTER TABLE `users`
 ALTER TABLE `files`
   ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

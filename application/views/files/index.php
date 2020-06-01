@@ -61,7 +61,8 @@
                 if(!empty($file['attachment'])) {
             ?>
             <div class="col-md-3">
-                    <a href="<?php echo site_url() . 'assets/uploadedFiles/' . $file['attachment']; ?>" download class="btn btn-info">
+                    <a href="<?php echo site_url() . 'assets/uploadedFiles/' . $file['attachment']; ?>" download="<?php echo $file['original_name']; ?>"
+                    class="btn btn-info">
                         Download file
                     </a>
                 <br/>

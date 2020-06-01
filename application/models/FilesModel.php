@@ -9,7 +9,7 @@ class FilesModel extends CI_Model {
     public function get_files($id = NULL) {
 
         $this->db->select('files.id, files.title, files.description, 
-            files.attachment, files.created_at, files.user_id, files.tag, users.username');
+            files.attachment, files.created_at, files.user_id, files.tag, files.original_name, users.username');
         $this->db->order_by('files.id', 'DESC');
         $this->db->join('users', 'users.id = files.user_id');
 
@@ -31,7 +31,7 @@ class FilesModel extends CI_Model {
     public function get_user_files($userId) {
 
         $this->db->select('files.id, files.title, files.description, 
-            files.attachment, files.created_at, files.user_id, files.tag, users.username');
+            files.attachment, files.created_at, files.user_id, files.tag, files.original_name, users.username');
         $this->db->order_by('files.id', 'DESC');
         $this->db->join('users', 'users.id = files.user_id');
 
@@ -47,7 +47,8 @@ class FilesModel extends CI_Model {
             'description' => $this->input->post('description'),
             'user_id' => $this->session->userdata('user_id'),
             'tag' => $this->input->post('tag'),
-            'attachment' => $file['file']
+            'attachment' => $file['file'],
+            'original_name' => $file['original_name']
         );
 
         return $this->db->insert('files', $data);

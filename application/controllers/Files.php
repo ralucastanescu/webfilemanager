@@ -69,7 +69,7 @@ class Files extends CI_Controller {
             $config['upload_path'] = './assets/uploadedFiles';
             $config['allowed_types'] = 'gif|jpeg|jpg|png|txt|zip|gzip|tar|targz|doc|docx|pdf';
             $config['max_size'] = '2048';
-            $config['file_name'] = uniqid() . '_' . $_FILES['userfile']['name'];;
+            $config['file_name'] = uniqid() . '_' . str_replace(' ', '_', $_FILES['userfile']['name']);
 
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
@@ -81,6 +81,7 @@ class Files extends CI_Controller {
             } else {
                 $data = array('upload_file' => $this->upload->data());
                 $file['file'] = $data['upload_file']['file_name'];
+                $file['original_name'] = $_FILES['userfile']['name'];
 
                 $this->session->set_flashdata('created_file', 'The file has been successfully created with name: ' . $file['file']);
             }
